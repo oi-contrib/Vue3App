@@ -1,0 +1,1 @@
+throw new Error("请执行 npm run release 完成发布！")

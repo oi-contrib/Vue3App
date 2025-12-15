@@ -1,0 +1,1 @@
+/// <reference path="./vue3app.d.ts" />

@@ -1,0 +1,41 @@
+{
+  "name": "vue3app",
+  "private": true,
+  "version": "0.1.0-alpha.0",
+  "workspaces": [
+    "packages/*"
+  ],
+  "description": "一个基于Vue3+Vite开发的跨端项目，支持H5、微信小程序、支付宝小程序等",
+  "sideEffects": false,
+  "scripts": {
+    "prepublishOnly": "node ./scripts/error.js",
+    "dev:web": "vue3app dev -p web",
+    "dev:mp-weixin": "vue3app dev -p mp-weixin",
+    "dev:mp-alipay": "vue3app dev -p mp-alipay",
+    "build:web": "vue3app build -p web",
+    "build:mp-weixin": "vue3app build -p mp-weixin",
+    "build:mp-alipay": "vue3app build -p mp-alipay",
+    "release": "node ./scripts/release.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oi-contrib/Vue3App.git"
+  },
+  "keywords": [
+    "uniapp",
+    "H5",
+    "Vue3",
+    "Vite",
+    "小程序",
+    "跨端"
+  ],
+  "author": {
+    "name": "zxl20070701",
+    "url": "https://zxl20070701.github.io/notebook/home.html"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/oi-contrib/Vue3App/issues"
+  },
+  "homepage": "https://github.com/oi-contrib/Vue3App"
+}

@@ -1,0 +1,22 @@
+{
+  "name": "@vue3app/mp-weixin",
+  "version": "0.1.0-alpha.0",
+  "description": "@vue3app/mp-weixin",
+  "main": "./src/index.js",
+  "sideEffects": false,
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oi-contrib/Vue3App.git",
+    "directory": "packages/mp-weixin"
+  },
+  "author": {
+    "name": "zxl20070701",
+    "url": "https://zxl20070701.github.io/notebook/home.html"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/oi-contrib/Vue3App/issues"
+  },
+  "homepage": "https://github.com/oi-contrib/Vue3App"
+}
