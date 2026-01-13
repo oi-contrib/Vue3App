@@ -3,3 +3,71 @@
 'use strict'
 
 process.title = 'Vue3App'
+
+// 暂时忽略 cjs 警告
+process.env.VITE_CJS_IGNORE_WARNING = true
+
+const { join } = require("path")
+const { performance } = require('perf_hooks')
+const { formatArgv } = require("oipage/bin/tools/format.js")
+const { mergeOption } = require("vislite")
+const createServer = require("./createViteServer.js")
+const build = require("./buildByVite.js")
+const rollupOptionsFactory = require("./rollupOptions.js")
+
+// 开始打包时间
+global.__vite_start_time = performance.now()
+
+const argvObj = formatArgv(process.argv, {
+    "-p": "--platform"
+})
+
+process.env.VUE3APP_ROOT = process.cwd()
+process.env.NODE_ENV = process.argv[2] === "dev" ? "development" : "production" // 开发还是生产
+process.env.VUE3APP_PLATFORM = (argvObj["--platform"] || ["web"])[0]  // 目标运行环境
+
+let option = {
+    root: process.cwd(),
+    mode: process.env.VUE3APP_PLATFORM
+}
+
+// 开发
+if (process.env.NODE_ENV === "development") {
+    process.env.VUE3APP_OUTDIR = join(option.root, "./dist/dev/", process.env.VUE3APP_PLATFORM)
+
+    if (process.env.VUE3APP_PLATFORM === "web") {
+
+        // 浏览器端，开发的时候，启动vite服务器
+        createServer(option)
+    } else {
+
+        mergeOption(option, {
+            build: {
+                rollupOptions: rollupOptionsFactory(process.env.VUE3APP_PLATFORM),
+                outDir: process.env.VUE3APP_OUTDIR,
+                watch: {} // 启动监听
+            }
+        })
+
+        // 小程序等，开发时候，启动watch监听打包
+        build(option).then(watcher => {
+            watcher.on('event', async (event) => {
+                // console.log(event.code)
+            })
+        })
+    }
+}
+
+// 生产
+else if (process.argv[2] === "build") {
+    process.env.VUE3APP_OUTDIR = join(option.root, "./dist/build/", process.env.VUE3APP_PLATFORM)
+
+    mergeOption(option, {
+        build: {
+            rollupOptions: rollupOptionsFactory(process.env.VUE3APP_PLATFORM),
+            outDir: process.env.VUE3APP_OUTDIR
+        }
+    })
+
+    build(option)
+}

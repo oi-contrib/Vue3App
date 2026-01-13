@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/oi-contrib/Vue3App/issues"
   },
-  "homepage": "https://github.com/oi-contrib/Vue3App"
+  "homepage": "https://github.com/oi-contrib/Vue3App",
+  "dependencies": {
+    "vue-router": "^4.5.1"
+  }
 }

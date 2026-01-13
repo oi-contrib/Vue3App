@@ -1,0 +1,14 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.dom.json",
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.vue",
+    "vite.config.*"
+  ],
+  "compilerOptions": {
+    "types": [
+      "@types/node",
+      "@vue3app/types"
+    ],
+  }
+}

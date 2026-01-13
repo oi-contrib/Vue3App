@@ -1,0 +1,13 @@
+{
+  "pages": [
+    {
+      "path": "pages/Index"
+    },
+    {
+      "path": "pages/Example1"
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTitleText": "Vue3App 跨端项目"
+  }
+}
